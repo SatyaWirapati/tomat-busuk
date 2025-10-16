@@ -6,7 +6,7 @@ const trailers = [
   "6ZfuNTqbHE8", // Avengers: Infinity War
 ];
 
-const TrailerSlideshow = () => {
+const Slideshow = () => {
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -101,4 +101,4 @@ const TrailerSlideshow = () => {
   );
 };
 
-export default TrailerSlideshow;
+export default Slideshow;
