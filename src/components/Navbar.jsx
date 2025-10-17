@@ -7,7 +7,7 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
         <nav className="bg-red-700 text-white px-4 md:px-6 py-3 shadow-md">
-            <div className="flex justify-between item-center">
+            <div className="flex justify-between items-center">
                 {/* LOGO */}
                 <Link to="/" className="text-xl md:text-2xl font-bold tracking-wide font-pixel">
                     🍅 Tomat Busuk
@@ -35,9 +35,7 @@ const Navbar = () => {
                     <Link to="/login" className="hover:text-yellow-300">
                         👤 Login
                     </Link>
-                    <Link to="/register" className="hover:text-yellow-300">
-                        📋 Register
-                    </Link>
+                    
                 </div>
 
                 {/* TOMBOL BUKA MENU (HANYA MOBILE) */}
