@@ -22,7 +22,7 @@ const Login = () => {
 
       login(data.token);
       setMessage("✅ Login successful! Redirecting...");
-      setTimeout(() => navigate("/watchlist"), 1500);
+      setTimeout(() => navigate("/"), 1500);
     } catch (err) {
       setMessage("❌ Invalid email or password");
     }

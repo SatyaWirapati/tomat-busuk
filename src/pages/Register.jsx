@@ -23,7 +23,7 @@ const Register = () => {
             // Simpan token ke AuthContext (anggap user sudah login)
             login(data.token);
             setMessage("✅ Registration successful! Redirecting...");
-            setTimeout(() => navigate("/watchlist"), 1500);
+            setTimeout(() => navigate("/"), 1500);
         } catch (err) {
             setMessage(`❌ ${err.message}`);
         }
