@@ -35,6 +35,9 @@ const Navbar = () => {
                     <Link to="/login" className="hover:text-yellow-300">
                         👤 Login
                     </Link>
+                    <Link to="/register" className="hover:text-yellow-300">
+                        📋 Register
+                    </Link>
                 </div>
 
                 {/* TOMBOL BUKA MENU (HANYA MOBILE) */}

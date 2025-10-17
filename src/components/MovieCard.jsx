@@ -10,7 +10,7 @@ const MovieCard = ({ index, title, rating, votes, poster }) => {
                 <h3 className="text-sm font-semibold text-gray-800 truncate">
                     #{index + 1} {title}
                 </h3>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 mt-1 mb-1">
                     ⭐ {rating} | 📥 {votes}
                 </p>
                 <a href={`https://www.youtube.com/results?search_query=${encodeURIComponent(
