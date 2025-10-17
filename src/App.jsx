@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Footer from "./components/Footer";
+import Reviewers from "./pages/Reviewers";
+import ReviewerDetail from "./pages/ReviewerDetail";
 
 import { AuthProvider } from "./context/AuthContext"; 
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -23,6 +25,13 @@ const App = () => {
               <Route path="/watchlist" element={
                 <ProtectedRoute><Watchlist /></ProtectedRoute>
               } />
+              <Route path="/reviewers" element={
+                <ProtectedRoute><Reviewers/></ProtectedRoute>
+              } />
+              <Route path="/reviewers/:id" element={
+                <ProtectedRoute><ReviewerDetail/></ProtectedRoute>
+              } />
+
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/profile" element={<Profile />} />

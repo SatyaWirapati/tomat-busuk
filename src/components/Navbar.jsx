@@ -1,23 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext"; // pastikan path sesuai
 
 const Navbar = () => {
   const [search, setSearch] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const { user, logout } = useAuth(); // ambil dari context
   const navigate = useNavigate();
 
-  // Cek login status di localStorage (misal token disimpan di sana)
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) setIsLoggedIn(true);
-  }, []);
-
-  // Logout handler
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
+    logout();
     navigate("/login");
   };
 
@@ -52,8 +44,7 @@ const Navbar = () => {
             🎬 Watchlist
           </Link>
 
-          {/* Jika sudah login */}
-          {isLoggedIn ? (
+          {user ? (
             <>
               <Link to="/reviewers" className="hover:text-yellow-300">
                 🧑‍💻 Reviewers
@@ -66,14 +57,13 @@ const Navbar = () => {
               </button>
             </>
           ) : (
-            // Jika belum login
             <Link to="/login" className="hover:text-yellow-300">
               👤 Login
             </Link>
           )}
         </div>
 
-        {/* TOMBOL MENU (MOBILE) */}
+        {/* MENU BUTTON (MOBILE) */}
         {!menuOpen && (
           <button
             className="md:hidden text-2xl"
@@ -83,12 +73,12 @@ const Navbar = () => {
           </button>
         )}
 
-        {/* SIDEBAR MOBILE */}
+        {/* SIDEBAR (MOBILE) */}
         {menuOpen && (
           <div
             className="fixed top-0 left-0 w-full md:w-3/4 lg:w-2/5 h-full 
-                       bg-red-700 p-5 shadow-lg flex flex-col z-50 text-white
-                       transition duration-500 transform"
+              bg-red-700 p-5 shadow-lg flex flex-col z-50 text-white
+              transition duration-500 transform"
           >
             <div className="flex justify-between items-center mb-5">
               <h2 className="text-lg font-bold font-pixel">🍅 Tomat Busuk</h2>
@@ -123,7 +113,7 @@ const Navbar = () => {
               🎬 Watchlist
             </Link>
 
-            {isLoggedIn ? (
+            {user ? (
               <>
                 <Link
                   to="/reviewers"
