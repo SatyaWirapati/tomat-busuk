@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-red-700 text-white px-4 md:px-6 py-3 shadow-md">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center relative">
         {/* LOGO */}
         <Link
           to="/"
@@ -25,7 +25,7 @@ const Navbar = () => {
         </Link>
 
         {/* SEARCH BAR (DESKTOP) */}
-        <div className="hidden md:flex items-center w-1/3">
+        <div className="hidden md:flex items-center w-1/3 absolute left-1/2 -translate-x-1/2">
           <input
             type="text"
             value={search}

@@ -36,8 +36,9 @@ const App = () => {
               <Route path="/register" element={<Register />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>
-            <Footer />
+            
           </main>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>

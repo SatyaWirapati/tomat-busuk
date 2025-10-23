@@ -31,10 +31,10 @@ export const loginUser = async (email, password) => {
     }
 };
 
-export const getReviewers = async () => {
+export const getReviewers = async (page=1) => {
   try {
-    const response = await api.get("https://reqres.in/api/users?page=1&per_page=10");
-    return response.data.data; // ambil array users dari response
+    const response = await api.get(`https://reqres.in/api/users?page=${page}&per_page=4`);
+    return response.data; // ambil array users dari response
   } catch (error) {
     console.error("Error fetching reviewers:", error);
     throw new Error("Failed to fetch reviewers");
