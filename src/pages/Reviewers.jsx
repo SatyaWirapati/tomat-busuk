@@ -1,27 +1,8 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getReviewers } from "../api/reqresApi"
 import Pagenation from "../components/Pagination";
-
+import useReviewers from "../hooks/useReviewers";
 const Reviewers = () => {
-  const [reviewers, setReviewers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [totalPages, setTotalPages] = useState(1);
-  const [page,setPage] = useState(1);
-  useEffect(() => {
-    const fetchReviewer = async () => {
-      try {
-        const data = await getReviewers(page);
-        setReviewers(data.data)
-        setTotalPages(data.total_pages);
-      } catch (err) {
-        console.error(err)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchReviewer();
-  }, [page])
+  const { reviewers, loading, totalPages, page, setPage } = useReviewers(); 
 
   if (loading) return <p className="text-center p-5">Loading Reviewers</p>
 
@@ -50,7 +31,7 @@ const Reviewers = () => {
           </div>
         ))}
       </div>
-      <Pagenation page={page} totalPages={totalPages} onPageChange={(newPage) => setPage(newPage)}/>
+      <Pagenation page={page} totalPages={totalPages} onPageChange={(newPage) => setPage(newPage)} />
     </div>
   )
 
