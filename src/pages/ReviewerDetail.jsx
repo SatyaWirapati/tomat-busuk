@@ -1,25 +1,9 @@
-import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { getReviewerDetail } from "../api/reqresApi";
+import useReviewerDetail from "../hooks/useReviewerDetail";
 
 const ReviewerDetail = () => {
     const { id } = useParams();
-    const [reviewer, setReviewer] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchDetail = async () => {
-            try {
-                const data = await getReviewerDetail(id);
-                setReviewer(data);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchDetail();
-    }, [id]);
+    const {reviewer, loading} = useReviewerDetail(id);
 
     if (loading) return <p className="text-center py-5">Loading...</p>;
     if (!reviewer) return <p className="text-center py-5">Reviewer not found.</p>;
