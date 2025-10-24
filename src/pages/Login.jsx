@@ -1,34 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { loginUser } from "../api/reqresApi";
-import { useAuth } from "../context/AuthContext";
+import useLogin from "../hooks/useLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const { login } = useAuth();
 
-  const handleLogin = async (e) => {
+  const {handleLogin, message, loading} = useLogin();
+  const submitForm = (e) => {
     e.preventDefault();
-    setMessage("");
-    setLoading(true);
-
-    try {
-      const data = await loginUser(email, password);
-      console.log("Token:", data.token);
-
-      login(data.token);
-      setMessage("✅ Login successful! Redirecting...");
-      setTimeout(() => navigate("/"), 1500);
-    } catch (err) {
-      setMessage("❌ Invalid email or password");
-    }
-
-    setLoading(false);
-  };
+    handleLogin(email, password);
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -37,7 +18,7 @@ const Login = () => {
           Login
         </h2>
 
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={submitForm} className="space-y-4">
           {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
@@ -80,9 +61,8 @@ const Login = () => {
 
         {message && (
           <p
-            className={`mt-4 text-center font-medium ${
-              message.includes("✅") ? "text-green-600" : "text-red-600"
-            }`}
+            className={`mt-4 text-center font-medium ${message.includes("✅") ? "text-green-600" : "text-red-600"
+              }`}
           >
             {message}
           </p>

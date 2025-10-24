@@ -1,34 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { registerUser } from "../api/reqresApi";
-import { useAuth } from "../context/AuthContext";
+import useRegister from "../hooks/useRegister";
 
 const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
-    const { login } = useAuth();
-
-    const handleRegister = async (e) => {
+   
+    const {handleRegister, message, loading} = useRegister();
+    const submitForm = async (e) => {
         e.preventDefault();
-        setMessage("");
-        setLoading(true);
-
-        try {
-            const data = await registerUser(email, password);
-            console.log("Token:", data.token);
-
-            // Simpan token ke AuthContext (anggap user sudah login)
-            login(data.token);
-            setMessage("✅ Registration successful! Redirecting...");
-            setTimeout(() => navigate("/"), 1500);
-        } catch (err) {
-            setMessage(`❌ ${err.message}`);
-        }
-
-        setLoading(false);
+        handleRegister(email,password);
     };
 
     return (
@@ -38,7 +18,7 @@ const Register = () => {
                     Register
                 </h2>
 
-                <form onSubmit={handleRegister} className="space-y-4">
+                <form onSubmit={submitForm} className="space-y-4">
                     {/* Email */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
