@@ -39,11 +39,6 @@ src/
   main.css
 ```
 
-src/
-components/
-pages/
-hooks/
-context/
 
 ```
 
